@@ -7,6 +7,7 @@ const nodeResolve	= require('@rollup/plugin-node-resolve').nodeResolve;
 const babel			= require("@rollup/plugin-babel").getBabelOutputPlugin;
 const noop			= require("gulp-noop");
 const terser		= require('gulp-terser');
+const notifier		= require('node-notifier');
 
 let devBuild		= false;
 var cache;
@@ -36,11 +37,27 @@ gulp.task("js", function(done) {
 		}
 	})
 	.on('error', function(e) {
+		
 		console.log(e);
+		
+		notifier.notify({
+			title: 'Gulp',
+			message: 'Build failed.',
+			sound: true
+		});
+		
 		done();
+		
 	})
 	.on("bundle", function(bundle) {
-		cache = bundle
+		
+		cache = bundle;
+		
+		notifier.notify({
+			title: 'Gulp',
+			message: 'Build completed successfully.'
+		});
+		
 	})
 	.pipe(source('bundle.js'))
 	.pipe(buffer())

@@ -23,6 +23,7 @@
     "gulp-noop": "^1.0.1",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-terser": "^2.0.1",
+    "node-notifier": "^9.0.0",
     "regenerator-runtime": "^0.13.7",
     "rollup": "^2.38.0",
     "three": "^0.125.2",
